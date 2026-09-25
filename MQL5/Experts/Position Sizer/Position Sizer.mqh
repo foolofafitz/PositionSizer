@@ -4417,11 +4417,11 @@ void CPositionSizeCalculator::OnEndEditEdtEntryLevel()
 
 void CPositionSizeCalculator::OnEndEditEdtSL()
 {
+    string s = m_EdtSL.Text();
+    m_EdtSL.PropFlags(0); // Reset the 'being edited' flag.
+    StringReplace(s, ",", "."); // Replace comma with period for normal double conversion.
     if (!sets.SLDistanceInPoints)
     {
-        string s = m_EdtSL.Text();
-        m_EdtSL.PropFlags(0); // Reset the 'being edited' flag.
-        StringReplace(s, ",", "."); // Replace comma with period for normal double conversion. 
         double new_value = StringToDouble(s);
         if (new_value <= 0) // Not allowed.
         {
